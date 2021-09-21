@@ -1,0 +1,16 @@
+//to add specific character in the url we use (encodeURIComponent)
+   EX:-encodeURIComponent("something&something)
+       'something%26something'
+
+
+//miidleware:- it is function which execute the acutal function 
+
+
+
+for perfromance sake, the browser save the get query,thats we don't send password in the get call
+
+we use post as post call doesnot save in the cache memory.
+  we mostly send data in post as:-formdata , or json like
+
+
+As the post material is encrypted, we use npm install --save body-parser

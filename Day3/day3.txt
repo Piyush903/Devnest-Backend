@@ -1,0 +1,62 @@
+     PUB-SUB
+
+SUBSCRIBE:- Which receive the message
+PUBLISH:-Which sent the msg
+
+channel:-the middleman through which subscriber and publisher join.
+
+
+     SUBSCRIBE [channel-name]  //msg will receive init 
+
+     PUBLISH [channel-name]   //msg will pass init
+
+
+pattern matching:-
+  
+   PSUBSCRIBE a*:- it means that it could receive every msg whose  channel name start with a 
+ 
+
+
+UNSUBSCRIBE [channel-name]:-It means it will unsubscribe from the particular channel and you didn't receive any message.
+
+   PUNSCRIBE a*:-it means that it could not receive every msg whose  channel name start with 
+
+
+
+STREAM:- It Form Different Pipelines in redis
+:-We can excess history through stream.
+   Creation of Stream:-
+
+
+      XADD [stream-name]  [id] [key-name]  [key-value]
+       ex;- XADD mystream 10000 name anna
+            XADD mrstream 10001 name ayas
+            XADD mystream 10002 name cathy
+             XADD mystream * name devnest  //It will automatically provide key acc to key strap
+
+  //providing condition in term of MAXLEN
+       XADD mystream MAXLEN 100000 * name devs  //MAXLEN Check the size of the stack in redis
+
+    Getting of Stream:-
+
+ 
+      XREAD COUNT 200 STREAMS mystream 0   //iska mtlb hai mystream me 0 index se 200 tk ko aa jao
+
+       XREAD COUNT 200 STREAMS mystream 10002-0  //10002-0 ke baad jitni bhi row hai show krdo
+
+  //If user is inactive for 10sec then user will be disconnect
+
+    XREAD BLOCK 100000 STREAMS mystream 0  //
+
+
+
+    XREAD BLOCK 10000 STREAMS mystream $    //it will holds the connection for 10sec then automatically disconnect it.
+
+Ranging print   
+
+   XRANGE mystream [starting-id] [ending-id]
+     EX:-XRANGE mystream 10000-0 10002-0
+   
+          XRANGE mystream + - count 2 // if the upper and lower bond is not known it return from the beginning and to the end
+          XREVRABGE mystream - + count 2
+     
