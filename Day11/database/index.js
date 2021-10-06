@@ -1,4 +1,11 @@
 const { Sequelize } = require("sequelize");
+const {
+  sequelize_username,
+  sequelize_database,
+  sequelize_dialect,
+  sequelize_host,
+  sequelize_password,
+} = require("../config/index");
 
 const sequelize = new Sequelize("devs", "postgres", "ppp", {
   host: "localhost",
